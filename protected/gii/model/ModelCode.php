@@ -46,6 +46,7 @@ class ModelCode extends CCodeModel
 	{
 		return array(
 			'model.php',
+			'base\model.php',
 		);
 	}
 
@@ -100,6 +101,10 @@ class ModelCode extends CCodeModel
 				'rules'=>$this->generateRules($table),
 				'fields'=>$this->generateFields($table, $className),
 				'relations'=>isset($this->relations[$className]) ? $this->relations[$className] : array(),
+			);
+			$this->files[]=new CCodeFile(
+				Yii::getPathOfAlias($this->modelPath).'/base/Base'.$className.'.php',
+				$this->render($templatePath.'/base/model.php', $params)
 			);
 			$this->files[]=new CCodeFile(
 				Yii::getPathOfAlias($this->modelPath).'/'.$className.'.php',
@@ -227,12 +232,12 @@ class ModelCode extends CCodeModel
 			else if(!$column->isPrimaryKey && !$r)
 				$safe[]=$column->name;
 			if (preg_match('/(_path)$/i', $column->name)) {
-			    if(preg_match('/(image|img)/i', $column->name)) 
+			    if(preg_match('/(image|img)/i', $column->name))
 			        $image[]= $column->name;
-			    else 
+			    else
 			        $file[]= $column->name;
 			}
-			
+
 		}
 		if($required!==array())
 			$rules[]="array('".implode(', ',$required)."', 'required')";
@@ -255,11 +260,11 @@ class ModelCode extends CCodeModel
 		return $rules;
 	}
 	/**
-	 * 
+	 *
 	 * @param mixed $table
 	 * @param string $className
 	 * @return array
-	 * 
+	 *
 	 * @author Sam Xiao
 	 * @since  1.0
 	 */
@@ -283,15 +288,15 @@ class ModelCode extends CCodeModel
             }
         }
         /** check every column and decide which type of field will display **/
-        /** 
+        /**
          * it will display as 'passwordField' when database column name contains 'password|pass|passwd|passcode'
-         * it will display as 'dateField' when database column name contains '_date' 
-         * it will display as 'dropDownList' when  database column name contains '_id' 
-         * it will display as 'fileField' when database column name contains '_path' 
-         * it will display as 'checkBox' when database column type is 'boolean' or database column name contains 'is_' 
-         * it will display as 'textArea' when database column type is 'text' 
+         * it will display as 'dateField' when database column name contains '_date'
+         * it will display as 'dropDownList' when  database column name contains '_id'
+         * it will display as 'fileField' when database column name contains '_path'
+         * it will display as 'checkBox' when database column type is 'boolean' or database column name contains 'is_'
+         * it will display as 'textArea' when database column type is 'text'
          * Other cases, it will display as 'textField'
-         *  
+         *
         **/
         foreach ($table->columns as $name => $column) {
             $typeString = "array( 'type' => 'textField', 'htmlOptions'=>array() )";
@@ -335,7 +340,7 @@ class ModelCode extends CCodeModel
                     $htmlOptions .= " 'size'=>{$size},'maxlength'=>{$maxLength} ";
                 }
                 $typeString = "array( 'type' => '{$inputField}', 'htmlOptions'=>array( {$htmlOptions}), {$additionalString} )";
-                
+
             }
             $fields[$name] = $typeString;
         }

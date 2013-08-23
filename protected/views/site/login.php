@@ -50,12 +50,12 @@ $form = $this->beginWidget( 'CActiveForm', array(
 ?>
 <h2 class="form-signin-heading">Please sign in</h2>
 <!-- username -->
-<div class="control-group">
+<div class="control-group <?php echo $form->hasErrors('username')?'error':'';?>">
 <?php echo $form->textField($model,'username', array('class'=>'input-block-level', 'placeholder' => $model->getAttributeLabel( 'username' ))); ?>
 <?php echo $form->error($model,'username', array('class'=>'help-inline')); ?>
 </div>
 <!-- password -->
-<div class="control-group">
+<div class="control-group <?php echo $form->hasErrors('password')?'error':'';?>">
 <?php echo $form->passwordField($model,'password', array('class'=>'input-block-level', 'placeholder' => $model->getAttributeLabel( 'password' ))); ?>
 <?php echo $form->error($model,'password', array('class'=>'help-inline')); ?>
 </div>

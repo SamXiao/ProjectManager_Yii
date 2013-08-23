@@ -1,7 +1,7 @@
 <?php
 return array (
   'template' => 'default',
-  'tablePrefix' => '',
+  'tablePrefix' => 'pm',
   'modelPath' => 'application.models',
   'baseClass' => 'AMapper',
   'buildRelations' => '1',

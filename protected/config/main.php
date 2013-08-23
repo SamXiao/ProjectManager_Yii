@@ -15,6 +15,7 @@ return array(
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
+		'application.models.base.*',
 		'application.components.*',
 		'application.services.*',
 		'application.extensions.*',
@@ -27,7 +28,7 @@ return array(
 			'allowAutoLogin'=>true,
 		),
 		// uncomment the following to enable URLs in path-format
-		
+
 		'urlManager'=>array(
 			'showScriptName'=>false,
 			'urlFormat'=>'path',
@@ -38,7 +39,7 @@ return array(
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),
-		
+
 		/** You can change settings of database at develpment.php/production.php  **/
 		'db'=>array(
 			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
