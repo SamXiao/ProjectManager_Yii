@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50612
 File Encoding         : 65001
 
-Date: 2013-07-10 18:15:29
+Date: 2013-08-23 18:07:58
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,17 +19,18 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `core_member`;
 CREATE TABLE `core_member` (
-  `id` int(11) NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(64) NOT NULL,
   `password` varchar(32) NOT NULL,
   `name` varchar(64) NOT NULL,
   `email` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of core_member
 -- ----------------------------
+INSERT INTO `core_member` VALUES ('1', 'test', 'password', '', '');
 
 -- ----------------------------
 -- Table structure for `pm_backlog`
@@ -55,6 +56,10 @@ DROP TABLE IF EXISTS `pm_project`;
 CREATE TABLE `pm_project` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
+  `strat_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `budget` decimal(10,0) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
