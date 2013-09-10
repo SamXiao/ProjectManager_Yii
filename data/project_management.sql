@@ -56,7 +56,7 @@ DROP TABLE IF EXISTS `pm_project`;
 CREATE TABLE `pm_project` (
   `id` int(11) NOT NULL,
   `name` varchar(128) NOT NULL,
-  `strat_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `strat_date` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `budget` decimal(10,0) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,

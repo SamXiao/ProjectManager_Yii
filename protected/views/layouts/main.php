@@ -3,7 +3,7 @@
  * header html5
  * @author Sam Xiao
  * @since 1.0
- */ 
+ */
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,7 @@
 		$baseUrl = Yii::app()->baseUrl;
 		/**
 		 * include Js Files
-		 */ 
+		 */
 		Yii::app()->clientScript->registerCoreScript('jquery');
 		Yii::app()->clientScript->registerCoreScript('jquery.ui');
 		Yii::app()->clientScript->registerScriptFile($baseUrl.'/js/bootstrap.js');
@@ -31,12 +31,13 @@
 		Yii::app()->clientScript->registerCssFile($baseUrl.'/css/bootstrap-overload.css');
 		Yii::app()->clientScript->registerCssFile($baseUrl.'/css/styles.css');
 		Yii::app()->clientScript->registerCssFile($baseUrl.'/css/jquery-ui.css');
-		
+
 	?>
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
+
 
 
 <div class="navbar navbar-fixed-top">
@@ -61,7 +62,7 @@
 				)); ?>
 		</div>
 		<div class="navbar-text pull-right">
-		<?php 
+		<?php
 			if (Yii::app()->user->isGuest){
 				echo 'Login';
 			} else {
@@ -72,17 +73,17 @@
 	</div>
   </div>
 </div>
-<?php 
+<?php
 	/** breadcrumbs **/
 	/*if(isset($this->breadcrumbs)):
 		$this->widget('zii.widgets.CBreadcrumbs', array(
 			'links'=>$this->breadcrumbs,
-		)); 
+		));
 	endif*/
 ?>
-		
+
 <?php echo $content; ?>
-	
+
 
 
 <div id="footer" class="row" align="center">
