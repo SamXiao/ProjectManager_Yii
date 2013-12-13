@@ -21,8 +21,22 @@ $navBarItems = array(
         'name' => 'Task'
     )
 );
-function renderNavbar($navBarItems){
-
+function renderNavbar($navBarItems, $dropdown = FALSE){
+    echo $dropdown?'<ul class="dropdown-menu">':'<ul class="nav navbar-nav">';
+    foreach ($navBarItems as $item){
+        if(isset($item['link'])){
+            echo '<li><a href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
+        }else{
+            if(isset($item['dropdown'])){
+                echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $item['name'] . '<b class="caret"></b></a>';
+                renderNavbar($item['dropdown'], TRUE);
+                echo '</li>';
+            }else{
+                echo '<li>' . $item['name'] . '</li>';
+            }
+        }
+    }
+    echo '</ul>';
 }
 ?>
 <nav class="navbar navbar-default" role="navigation">
@@ -40,21 +54,7 @@ function renderNavbar($navBarItems){
 	<div class="collapse navbar-collapse navbar-ex1-collapse">
 		<ul class="nav navbar-nav">
             <?php
-            foreach ($navBarItems as $item){
-                if(isset($item['link'])){
-                    echo '<li><a href="' . $item['link'] . '">' . $item['name'] . '</a></li>';
-                }else{
-                    if(isset($item['dropdown'])){
-                        echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $item['name'] . '<b class="caret"></b></a>';
-                        foreach ($item['dropdown'] as $subItem){
-
-                        }
-                        '</li>';
-                    }else{
-                        echo '<li>' . $item['name'] . '</li>';
-                    }
-                }
-            }
+            renderNavbar( $navBarItems );
             ?>
 			<li class="active"><a href="#">Link</a></li>
 			<li><a href="#">Link</a></li>
