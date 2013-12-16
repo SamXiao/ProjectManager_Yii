@@ -1,5 +1,5 @@
 <?php
-$baseUrl = Yii::app()->baseUrl;
+$assestUrl = Yii::app()->baseUrl;
 $this->breadcrumbs=array(
 	'Projects'=>array('index'),
 	'Manage',
@@ -64,9 +64,9 @@ $('.search-form form').submit(function(){
 		'modified',
 		array(
 			'class'=>'CButtonColumn',
-            'updateButtonImageUrl'=>$baseUrl.'/images/edit.png',
-            'viewButtonImageUrl'=>$baseUrl.'/images/view.png',
-            'deleteButtonImageUrl'=>$baseUrl.'/images/delete.png',
+            'updateButtonImageUrl'=>$assestUrl.'/images/edit.png',
+            'viewButtonImageUrl'=>$assestUrl.'/images/view.png',
+            'deleteButtonImageUrl'=>$assestUrl.'/images/delete.png',
 		),
 	),
 )); ?>

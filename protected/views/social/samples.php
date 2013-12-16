@@ -10,7 +10,7 @@
     <?php /** FACEBOOK **/?>
     <div class="tab-pane active" id="Facebook">
         <?php
-        $baseUrl = Yii::app()->baseUrl; 
+        $assestUrl = Yii::app()->baseUrl; 
         /** Facebook Login  **/?>
         <script type="text/javascript" >
         /**
@@ -26,7 +26,7 @@
         
         function post(){
         	
-        	$.post('<?php echo $baseUrl;?>/social/PostFB','accessToken='+accessToken);
+        	$.post('<?php echo $assestUrl;?>/social/PostFB','accessToken='+accessToken);
         	
         }
         </script>
@@ -46,7 +46,7 @@
     
     <?php /** TWITTER **/?>
     <div class="tab-pane" id="Twitter">
-        <?php Yii::app()->clientScript->registerScriptFile($baseUrl.'/js/jsOAuth-1.3.4.js');?>
+        <?php Yii::app()->clientScript->registerScriptFile($assestUrl.'/js/jsOAuth-1.3.4.js');?>
         <script type="text/javascript">
             var oauth, options;
         
