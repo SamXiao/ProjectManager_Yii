@@ -38,7 +38,7 @@
             </a>
         </li>
         <li>
-            <a href="typography.html">
+            <a href="<?=$url.'/ProjectCronjobs/index'?>">
                 <i class="icon-youtube-sign"></i>
                 <span class="menu-text">
                     CronJob

@@ -1,12 +1,12 @@
 <?php
 
-class ProjectController extends Controller
+class ProjectCronjobsController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/main';
 
 	/**
 	 * @return array action filters
@@ -61,14 +61,14 @@ class ProjectController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Project;
+		$model=new ProjectCronjobs;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Project']))
+		if(isset($_POST['ProjectCronjobs']))
 		{
-			$model->attributes=$_POST['Project'];
+			$model->attributes=$_POST['ProjectCronjobs'];
             if($model->save()){
 
 				CFlashMessages::setMessages(CFlashMessages::ALERT_SUCCESS, 'Created Successfully');
@@ -93,9 +93,9 @@ class ProjectController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Project']))
+		if(isset($_POST['ProjectCronjobs']))
 		{
-			$model->attributes=$_POST['Project'];
+			$model->attributes=$_POST['ProjectCronjobs'];
             if($model->save()){
 
 			    CFlashMessages::setMessages(CFlashMessages::ALERT_SUCCESS, 'Updated Successfully');
@@ -133,18 +133,14 @@ class ProjectController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$model=new Project('search');
+		$model=new ProjectCronjobs('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Project']))
-			$model->attributes=$_GET['Project'];
+		if(isset($_GET['ProjectCronjobs']))
+			$model->attributes=$_GET['ProjectCronjobs'];
 
 		$this->render('index',array(
 			'model'=>$model,
 		));
-	}
-
-	public function actionCronjob(){
-
 	}
 
 	/**
@@ -154,7 +150,7 @@ class ProjectController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Project::model()->findByPk($id);
+		$model=ProjectCronjobs::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -166,7 +162,7 @@ class ProjectController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='project-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='project-cronjobs-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
