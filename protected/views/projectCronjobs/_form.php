@@ -1,3 +1,6 @@
+<div class="page-header">
+	<h1><?php echo $model->isNewRecord ? 'Create' : 'Edit'?> Project</h1>
+</div>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -5,7 +8,6 @@
 	'enableAjaxValidation'=>false,
 	'htmlOptions'=>array('class'=>'form-horizontal', ),
 )); ?>
-	<legend><?php echo $model->isNewRecord ? 'Create' : 'Edit'?> Project</legend>
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
@@ -19,6 +21,16 @@
 	</div>
 
 	<div class="control-group">
+		<?php echo $form->labelEx($model,'description',array('class'=>'control-label')); ?>
+		<div class="controls">
+		<?php echo $form->textArea($model, 'description', array('rows' => '6', 'cols' => '50', )); ?>
+		<?php echo $form->error($model,'description'); ?>
+		</div>
+	</div>
+
+	<?php if(!$model->isNewRecord):?>
+
+	<div class="control-group">
 		<?php echo $form->labelEx($model,'result',array('class'=>'control-label')); ?>
 		<div class="controls">
 		<?php echo $form->textField($model, 'result', array()); ?>
@@ -26,13 +38,6 @@
 		</div>
 	</div>
 
-	<div class="control-group">
-		<?php echo $form->labelEx($model,'description',array('class'=>'control-label')); ?>
-		<div class="controls">
-		<?php echo $form->textArea($model, 'description', array('rows' => '6', 'cols' => '50', )); ?>
-		<?php echo $form->error($model,'description'); ?>
-		</div>
-	</div>
 
 	<div class="control-group">
 		<?php echo $form->labelEx($model,'modified',array('class'=>'control-label')); ?>
@@ -42,11 +47,12 @@
 		</div>
 	</div>
 
+	<?php endif;?>
 	<div class="form-actions">
 		<a class="btn btn-primary" href="javascript:$('#project-cronjobs-form').submit();">
 			<i class="icon-pencil icon-white"></i>
 			&nbsp;<?php echo $model->isNewRecord ? 'Create' : 'Save';?>&nbsp;
-		</a>	
+		</a>
 		<a class="btn btn-danger" href="<?php echo CHtml::normalizeUrl(array("index"));?>">
 			<i class="icon-arrow-left icon-white"></i>
 			&nbsp;Cancel&nbsp;

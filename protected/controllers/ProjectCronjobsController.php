@@ -61,14 +61,14 @@ class ProjectCronjobsController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new ProjectCronjobs;
+		$model=new ProjectCronjob;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ProjectCronjobs']))
+		if(isset($_POST['ProjectCronjob']))
 		{
-			$model->attributes=$_POST['ProjectCronjobs'];
+			$model->attributes=$_POST['ProjectCronjob'];
             if($model->save()){
 
 				CFlashMessages::setMessages(CFlashMessages::ALERT_SUCCESS, 'Created Successfully');
@@ -93,9 +93,9 @@ class ProjectCronjobsController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['ProjectCronjobs']))
+		if(isset($_POST['ProjectCronjob']))
 		{
-			$model->attributes=$_POST['ProjectCronjobs'];
+			$model->attributes=$_POST['ProjectCronjob'];
             if($model->save()){
 
 			    CFlashMessages::setMessages(CFlashMessages::ALERT_SUCCESS, 'Updated Successfully');
@@ -133,10 +133,10 @@ class ProjectCronjobsController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$model=new ProjectCronjobs('search');
+		$model=new ProjectCronjob('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['ProjectCronjobs']))
-			$model->attributes=$_GET['ProjectCronjobs'];
+		if(isset($_GET['ProjectCronjob']))
+			$model->attributes=$_GET['ProjectCronjob'];
 
 		$this->render('index',array(
 			'model'=>$model,
@@ -150,7 +150,7 @@ class ProjectCronjobsController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=ProjectCronjobs::model()->findByPk($id);
+		$model=ProjectCronjob::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;

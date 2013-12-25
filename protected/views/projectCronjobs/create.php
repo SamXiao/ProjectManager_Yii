@@ -9,7 +9,8 @@ $this->menu=array(
 	array('label'=>'Manage ProjectCronjobs', 'url'=>array('index')),
 );
 ?>
-
-<h1>Create ProjectCronjobs</h1>
+<div class="page-content">
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>
+
+</div>

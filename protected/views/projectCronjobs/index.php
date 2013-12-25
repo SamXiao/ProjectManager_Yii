@@ -29,22 +29,12 @@ $('.search-form form').submit(function(){
 <legend>Manage Project Cronjobs</legend>
 
 <?php $this->widget('CFlashMessages');?>
-<p><?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?></p>
 
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
-	'model'=>$model,
-)); ?>
-</div><!-- search-form -->
 
-<div class="well">
-	<a class="btn btn-primary" href="<?php echo CHtml::normalizeUrl(array('create')); ?>">
+<div class="row-fluid" style="margin-bottom: 10px; text-align: right;">
+	<a class="btn btn-primary btn-sm" href="<?php echo CHtml::normalizeUrl(array('create')); ?>">
 		<i class="icon-pencil icon-white"></i>
 		&nbsp;Create Project&nbsp;
-	</a>
-	<a class="btn btn-danger" id="batchDelete">
-		<i class="icon-trash icon-white"></i>
-		&nbsp;Suspend&nbsp;
 	</a>
 </div>
 
@@ -53,20 +43,20 @@ $('.search-form form').submit(function(){
 	'dataProvider'=>$model->search(),
 	//'filter'=>$model,
 	'columns'=>array(
-		array(
-			'selectableRows' => 2, //multiple checkboxes can be checked
-			'class' => 'CCheckBoxColumn',
-			'checkBoxHtmlOptions' => array('name' => 'selectedID[]'),
-        ),
 		'name',
 		'result',
 		'description',
 		'modified',
+        'callbackUrl',
 		array(
 			'class'=>'CButtonColumn',
-            'updateButtonImageUrl'=>$baseUrl.'/images/edit.png',
-            'viewButtonImageUrl'=>$baseUrl.'/images/view.png',
-            'deleteButtonImageUrl'=>$baseUrl.'/images/delete.png',
+            'template'=>'<div class="action-buttons">{update}{delete}</div>',
+            'updateButtonImageUrl'=>false,
+            'updateButtonOptions'=>array('class'=>'blue'),
+            'updateButtonLabel'=>'<i class="icon-edit bigger-130"></i>',
+            'deleteButtonImageUrl'=>false,
+            'deleteButtonOptions'=>array('class'=>'red'),
+            'deleteButtonLabel'=>'<i class="icon-trash bigger-130"></i>'
 		),
 	),
 )); ?>

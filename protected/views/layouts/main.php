@@ -26,6 +26,6 @@
 	</a>
 </div><!-- /.main-container -->
 
-<?php //require 'sections/footer.php';?>
+<?php require 'sections/scripts.php';?>
 
 <?php $this->endContent(); ?>

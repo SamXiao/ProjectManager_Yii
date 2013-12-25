@@ -6,16 +6,16 @@
  * The followings are the available columns in table 'pm_project_cronjobs':
  * @property string $id
  * @property string $name
- * @property integer $result
+ * @property string $result
  * @property string $description
  * @property string $modified
  */
-class BaseProjectCronjobs extends AMapper
+class BaseProjectCronjob extends AMapper
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return ProjectCronjobs the static model class
+	 * @return ProjectCronjob the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -39,8 +39,7 @@ class BaseProjectCronjobs extends AMapper
 		// will receive user inputs.
 		return array(
 			array('name, result, description', 'required'),
-			array('result', 'numerical', 'integerOnly'=>true),
-			array('name', 'length', 'max'=>1024),
+			array('name, result', 'length', 'max'=>1024),
 			array('modified', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -86,7 +85,7 @@ class BaseProjectCronjobs extends AMapper
 
 		$criteria->compare('id',$this->id,true);
 		$criteria->compare('name',$this->name,true);
-		$criteria->compare('result',$this->result);
+		$criteria->compare('result',$this->result,true);
 		$criteria->compare('description',$this->description,true);
 		$criteria->compare('modified',$this->modified,true);
 
@@ -103,7 +102,7 @@ class BaseProjectCronjobs extends AMapper
 		return array(
     		'id' => array( 'type' => 'textField', 'htmlOptions'=>array(  'size'=>10,'maxlength'=>10 ),  ),
     		'name' => array( 'type' => 'textField', 'htmlOptions'=>array(  'size'=>60,'maxlength'=>1024 ),  ),
-    		'result' => array( 'type' => 'textField', 'htmlOptions'=>array( ),  ),
+    		'result' => array( 'type' => 'textField', 'htmlOptions'=>array(  'size'=>60,'maxlength'=>1024 ),  ),
     		'description' => array( 'type' => 'textArea', 'htmlOptions'=>array( 'rows'=>6, 'cols'=>50) ),
     		'modified' => array( 'type' => 'textField', 'htmlOptions'=>array( ),  ),
 		);

@@ -9,8 +9,10 @@
 class APIController extends Controller
 {
 
-    public function actionCronjob( $cid ){
-
+    public function actionCronjob( $c, $r='Has been running' ){
+        $projectCronjob = ProjectCronjob::model()->findByPk($c);
+        $projectCronjob->recordCronjobRunning($r);
+        echo $projectCronjob->result;
     }
 
 }

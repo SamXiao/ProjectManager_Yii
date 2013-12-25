@@ -50,5 +50,13 @@
  */
 class <?php echo $modelClass; ?> extends <?php echo 'Base'.$modelClass."\n"; ?>
 {
-
+	/**
+	 * Returns the static model of the specified AR class.
+	 * @param string $className active record class name.
+	 * @return ProjectCronjob the static model class
+	 */
+	public static function model($className=__CLASS__)
+	{
+		return parent::model($className);
+	}
 }
