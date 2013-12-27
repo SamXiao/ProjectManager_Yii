@@ -19,6 +19,8 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create <?php echo $this->modelClass; ?></h1>
+<div class="page-header">
+	<h1>Create <?php echo $this->modelClass; ?></h1>
+</div>
 
 <?php echo "<?php echo \$this->renderPartial('_form', array('model'=>\$model)); ?>"; ?>

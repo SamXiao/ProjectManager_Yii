@@ -1,7 +1,7 @@
 <?php
 /**
- * 
- * 
+ *
+ *
  * @author Sam Xiao
  *
  */
@@ -25,19 +25,19 @@ class CrudCode extends CCodeModel
     public function rules ()
     {
 
-        return array_merge(parent::rules(), array(array('model, controller', 'filter', 'filter' => 'trim' ), 
-            array('model, controller, baseControllerClass', 'required' ), 
-            array('model', 'match', 'pattern' => '/^\w+[\w+\\.]*$/', 'message' => '{attribute} should only contain word characters and dots.' ), 
-            array('controller', 'match', 'pattern' => '/^\w+[\w+\\/]*$/', 'message' => '{attribute} should only contain word characters and slashes.' ), 
-            array('baseControllerClass', 'match', 'pattern' => '/^[a-zA-Z_]\w*$/', 'message' => '{attribute} should only contain word characters.' ), 
-            array('baseControllerClass', 'validateReservedWord', 'skipOnError' => true ), array('model', 'validateModel' ), 
+        return array_merge(parent::rules(), array(array('model, controller', 'filter', 'filter' => 'trim' ),
+            array('model, controller, baseControllerClass', 'required' ),
+            array('model', 'match', 'pattern' => '/^\w+[\w+\\.]*$/', 'message' => '{attribute} should only contain word characters and dots.' ),
+            array('controller', 'match', 'pattern' => '/^\w+[\w+\\/]*$/', 'message' => '{attribute} should only contain word characters and slashes.' ),
+            array('baseControllerClass', 'match', 'pattern' => '/^[a-zA-Z_]\w*$/', 'message' => '{attribute} should only contain word characters.' ),
+            array('baseControllerClass', 'validateReservedWord', 'skipOnError' => true ), array('model', 'validateModel' ),
             array('baseControllerClass', 'sticky' ) ));
     }
 
     public function attributeLabels ()
     {
 
-        return array_merge(parent::attributeLabels(), array('model' => 'Model Class', 'controller' => 'Controller ID', 
+        return array_merge(parent::attributeLabels(), array('model' => 'Model Class', 'controller' => 'Controller ID',
             'baseControllerClass' => 'Base Controller Class' ));
     }
 
@@ -86,7 +86,7 @@ class CrudCode extends CCodeModel
     public function prepare ()
     {
         /** check if need upload file **/
-        
+
         $model = CActiveRecord::model($this->modelClass);
         foreach($this->tableSchema->columns as $column){
             if ($field = $model->getCustomedField($column->name)) {
@@ -96,7 +96,7 @@ class CrudCode extends CCodeModel
                 }
             }
         }
-        
+
         $this->files = array();
         $templatePath = $this->templatePath;
         $controllerTemplateFile = $templatePath . DIRECTORY_SEPARATOR . 'controller.php';
@@ -184,14 +184,14 @@ class CrudCode extends CCodeModel
         return $this->_table;
     }
     /**
-     * Generate all field types 
-     * 
+     * Generate all field types
+     *
      * @param string $modelClass
      * @param mixed $column
      * @param enum $type ( form | html )
      * @return string|boolean
-     * 
-     * @author Sam Xiao 
+     *
+     * @author Sam Xiao
      * @since  1.0
      */
     public function generateField ($modelClass, $column, $type = 'form')
@@ -282,7 +282,7 @@ class CrudCode extends CCodeModel
                 } else {
                     $string .= "'{$key}' => '$value'";
                 }
-               
+
             }
             $string .= ", ";
         }
@@ -290,11 +290,11 @@ class CrudCode extends CCodeModel
     }
 
     /**
-	 * 
+	 *
 	 * @param unknown_type $modelClass
 	 * @param unknown_type $column
-	 * 
-	 * 
+	 *
+	 *
 	 * Be modified by Sam Xiao at 2012/05/14
 	 */
     public function generateInputField ($modelClass, $column)
@@ -346,7 +346,7 @@ class CrudCode extends CCodeModel
                 else
                     $inputField = 'textField';
                 if ($column->type !== 'string' || $column->size === null)
-                    return "\$form->{$inputField}(\$model,'{$column->name}')";
+                    return "\$form->{$inputField}(\$model,'{$column->name}','class'=>'width-100' )";
                 else {
                     if (($size = $maxLength = $column->size) > 60) $size = 60;
                     return "\$form->{$inputField}(\$model,'{$column->name}',array('size'=>$size,'maxlength'=>$maxLength))";
